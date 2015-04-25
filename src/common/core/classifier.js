@@ -1,13 +1,13 @@
-function Classifier(savedState) {
-	this.isContentAcceptable(contentText) {
+function Classifier(savedState, aggressiveness) {
+	this.isContentAcceptable = function(contentText) {
 		return true;
 	}
     
-    this.markContentAsUnacceptable(contentText) {
+    this.markContentAsUnacceptable = function(contentText) {
         return;
     }
     
-    this.markFalsePositive(contentText) {
+    this.markFalsePositive = function(contentText) {
         return
     }
 }
