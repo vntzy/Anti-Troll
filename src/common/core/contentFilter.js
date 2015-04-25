@@ -27,14 +27,15 @@ function ContentFilter() {
         this._fallbackSelectors.sort(_prioritySortFunction);
     };
     
-    this.findAllContentOnDOMElements = function(domElements, domDocument) {
+    this.findAllContentOnDOMElements = function(domElements, window) {
         var arrayLength = this._contentSelectors.length, hasFoundSelector = false;
         var result = [];
         for (var i = 0; i < arrayLength; i++) {
-            var selector = this._contentSelectors[i];
-            if(selector.canParse(domDocument)) {
+            var selector = this._contentSelectors[i].handler;
+            if(selector.canParse(window)) {
                 hasFoundSelector = true
-                result.concat(selector.selectContentFromDOMElements(domElements));
+                var contentsFound = selector.selectContentFromDOMElements(domElements);
+                result = result.concat(contentsFound);
             }
         }
         
@@ -45,8 +46,8 @@ function ContentFilter() {
         arrayLength = this._fallbackSelectors.length;
         result = [];
         for (var i = 0; i < arrayLength; i++) {
-            var selector = this._fallbackSelectors[i];
-            result.concat(selector.selectContentFromDOMElements(domElements));
+            var selector = this._fallbackSelectors[i].handler;
+            result = result.concat(selector.selectContentFromDOMElements(domElements));
         }
         
         return result;

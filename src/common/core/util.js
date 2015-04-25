@@ -28,3 +28,7 @@ function _getElementsByXpath(path) {
 function _renderTextFromDomElement(domElement) {
     return domElement.innerText || domElement.textContent;
 }
+
+function _shallowestCopy(obj) {
+    return [obj][0];
+}

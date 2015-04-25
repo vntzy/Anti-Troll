@@ -6,6 +6,7 @@
         "core/contentMarker.js",
         "core/content_selectors/facebook_selector.js",
         "core/content_selectors/fallback_selectors.js",
+        "core/content_selectors/test_selector.js",
         "core/parse/blocker.js"
     ],
     "description": "Extension description",

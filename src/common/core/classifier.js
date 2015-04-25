@@ -1,6 +1,7 @@
 function Classifier(savedState, aggressiveness) {
 	this.isContentAcceptable = function(contentText) {
         // Much machine; such learning!
+        kango.console.log(contentText);
 		return true;
 	};
     

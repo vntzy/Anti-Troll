@@ -23,6 +23,8 @@ var _domEventHandler = function(mutations) {
         var mutationRecord = mutations[i];
         switch(mutationRecord.type) {
             case "bodyInit":
+                _append(targetDomElements, mutationRecord.target);
+                break;
             case "characterData":
             case "childList":
                 //kango.console.log("Character Data");
@@ -33,20 +35,20 @@ var _domEventHandler = function(mutations) {
                 break;
         }
     }
-    kango.console.log(targetDomElements);
     var contentElements =
-        contentFilter.findAllContentOnDOMElements(targetDomElements, document);
-    //TODO: Work for real
-    kango.console.log(contentElements);
-    return;
+        contentFilter.findAllContentOnDOMElements(targetDomElements, window);
     for (var i = 0; i < contentElements.length; i++) {
         var domElement = contentElements[i];
         var plaintextValue = _renderTextFromDomElement(domElement);
         kango.invokeAsync("globalClassifier.isContentAcceptable",
-            plaintextValue, function(isToxic) {
-                kango.console.log(plaintextValue + "|" + isToxic);
-                contentMarker.mark(domElement, isToxic);
-            });
+            plaintextValue, 
+                function(currentDomElement, currentPlaintextValue) {
+                    return function(isNotToxic) {
+                        kango.console.log(
+                            currentPlaintextValue + "|" + isNotToxic);
+                        contentMarker.mark(currentDomElement, !isNotToxic);
+                    }
+            }(_shallowestCopy(domElement), _shallowestCopy(plaintextValue)));
     }
 };
 
@@ -70,5 +72,3 @@ $(document).ready(function() {
 });
 
 observer.observe(document.body, observerInit);
-
-kango.console.log("Observing...");
