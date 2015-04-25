@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     epoxy (0.3.1)
+    haml (4.0.5)
+      tilt
     methlab (0.1.0)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -29,6 +31,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   rdbi-driver-sqlite3
   sequel
   sinatra
