@@ -1,9 +1,4 @@
 
-// REMOVE FROM HERE!
-function _renderTextFromDomElement(domElement) {
-    return domElement.innerText || domElement.textContent;
-}
-
 function FacebookContentSelector() {
 	
 	this.canParse = function(window) {
