@@ -42,7 +42,7 @@ class OffnewsExtractor
   end
 
   def body(comment)
-    comment.search('.comment_text').text.gsub(/\s+/,' ')
+    comment.search('.comment_text').text.gsub(/\s+/,' ').sub(/\+ \d+ - \d+/i,'')
   end
 
   def upvotes(comment)
@@ -50,6 +50,6 @@ class OffnewsExtractor
   end
 
   def downvotes(comment)
-    comment.search('.vote_up').text.gsub(/\s+/,'').to_i
+    comment.search('.vote_down').text.gsub(/\s+/,'').to_i
   end
 end
