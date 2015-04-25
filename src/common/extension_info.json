@@ -1,16 +1,16 @@
 {
     "content_scripts": [], 
-    "description": "Extension description", 
-    "creator": "Kango", 
+    "description": "Extension description",
+    "creator": "null",
     "background_scripts": [
         "main.js"
     ], 
-    "homepage_url": "http://kangoextensions.com/", 
-    "version": "0.9.0", 
+    "homepage_url": "https://github.com/vntzy/Anti-Troll",
+    "version": "0.0.1",
     "browser_button": {
-        "caption": "Kango", 
-        "icon": "icons/button.png", 
-        "tooltipText": "Kango"
-    }, 
+        "caption": "Anti-Troll",
+        "icon": "icons/button.png",
+        "tooltipText": "Anti-Troll"
+    },
     "name": "Anti-Troll-Extension"
 }
