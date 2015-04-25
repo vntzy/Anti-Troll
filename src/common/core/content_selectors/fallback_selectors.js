@@ -7,6 +7,3 @@ function ExampleFallbackSelector() {
 
 var exampleFallbackSelector = new ExampleFallbackSelector();
 contentFilter.addFallbackSelector(exampleFallbackSelector, 0.1);
-
-var otherFallbackSelector = null;
-contentFilter.addFallbackSelector(otherFallbackSelector, 1.0);

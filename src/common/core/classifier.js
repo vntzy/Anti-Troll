@@ -1,5 +1,6 @@
 function Classifier(savedState, aggressiveness) {
 	this.isContentAcceptable = function(contentText) {
+        // Much machine; such learning!
 		return true;
 	};
     
@@ -11,3 +12,6 @@ function Classifier(savedState, aggressiveness) {
         return
     };
 }
+
+// TODO: Extract aggressiveness and saved state
+globalClassifier  = new Classifier(null, 0);

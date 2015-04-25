@@ -3,6 +3,7 @@
         "core/content_scripts/dom_event_handler.js",
         "core/util.js",
         "core/contentFilter.js",
+        "core/contentMarker.js",
         "core/content_selectors/facebook_selector.js",
         "core/content_selectors/fallback_selectors.js",
         "core/parse/blocker.js"

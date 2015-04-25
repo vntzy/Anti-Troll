@@ -24,3 +24,7 @@ function _getElementsByXpath(path) {
     
     return result;
 }
+
+function _renderTextFromDomElement(domElement) {
+    return domElement.innerText || domElement.textContent;
+}
