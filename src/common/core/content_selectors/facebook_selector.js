@@ -1,7 +1,6 @@
 function FacebookContentSelector() {
     this.selectContentFromDOMElements = function(domElements) {
-		alert("test");
-        //TODO: Find (e.g.) all profanities
+		//TODO: Find (e.g.) all profanities
         return [];
     };
 }
