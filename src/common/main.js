@@ -1,15 +1,15 @@
-﻿function MyExtension() {
+﻿function Extension() {
     var self = this;
     kango.ui.browserButton.addEventListener(kango.ui.browserButton.event.COMMAND, function() {
         self._onCommand();
     });
 }
 
-MyExtension.prototype = {
+Extension.prototype = {
 
     _onCommand: function() {
-        kango.browser.tabs.create({url: 'http://kangoextensions.com/'});
+        kango.browser.tabs.create({url: 'https://github.com/vntzy/Anti-Troll'});
     }
 };
 
-var extension = new MyExtension();
+var extension = new Extension();
