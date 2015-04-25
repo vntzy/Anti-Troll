@@ -1,3 +1,6 @@
+require 'forwardable'
+require 'mechanize'
+
 class Crawler
   extend Forwardable
 
@@ -10,7 +13,7 @@ class Crawler
   end
 
   def site_news_urls
-    initial_urls.map { |url| news_urls(agent.get(url)) }
+    initial_urls.map { |url| news_urls(@agent.get(url)) }.flatten
   end
 
   def crawl
