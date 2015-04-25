@@ -14,10 +14,10 @@ class Crawler
 
   def first_100_pages(initial_url)
     i = 0
-    page = Mechanize.new.get(initial_url)
+    page = @agent.get(initial_url)
     pages = [initial_url]
     while !next_page(page).nil? && (i < 100) do
-      page = Mechanize.new.get(next_page(page))
+      page = @agent.get(next_page(page))
       pages.push page.uri.to_s
       i += 1
     end
