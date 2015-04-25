@@ -2,6 +2,7 @@
     "content_scripts": [],
     "description": "Extension description",
     "creator": "null",
+	"name": "Anti-Troll-Extension",
     "background_scripts": [
         "main.js",
         "core/contentFilter.js",
@@ -15,5 +16,5 @@
         "icon": "icons/button.png",
         "tooltipText": "Anti-Troll"
     },
-    "name": "Anti-Troll-Extension"
+	"options_page": "ui/options.html"
 }
