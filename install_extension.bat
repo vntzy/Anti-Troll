@@ -1,0 +1,1 @@
+chrome.exe --load-extension=%CD%\output\chrome
