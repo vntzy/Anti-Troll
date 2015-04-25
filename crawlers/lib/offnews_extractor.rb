@@ -6,9 +6,8 @@ class OffnewsExtractor
   end
 
   def next_page(page)
-    # @domain = "http://offnews.bg/news/%D0%9D%D0%BE%D0%B2%D0%B8%D0%BD%D0%B8_2/"
-    # @domain + page.search('a.next').attr('href').value unless page.search('a.next').empty?
-    nil
+    @domain = "http://offnews.bg/news/%D0%9D%D0%BE%D0%B2%D0%B8%D0%BD%D0%B8_2/"
+    @domain + page.search('a.next').attr('href').value unless page.search('a.next').empty?
   end
 
   def news_urls(page)
