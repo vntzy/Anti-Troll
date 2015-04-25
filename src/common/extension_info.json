@@ -1,5 +1,7 @@
 {
-    "content_scripts": [],
+    "content_scripts": [
+        "core/content_scripts/dom_event_handler.js"
+    ],
     "description": "Extension description",
     "creator": "null",
 	"name": "Anti-Troll-Extension",
