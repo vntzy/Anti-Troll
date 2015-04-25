@@ -9,7 +9,21 @@
 var $ = window.$.noConflict(true); // Required for IE
 
 var _dom_event_handler = function(mutations) {
-    kango.console.log("Group: " + mutations.length);
+    for(var i = 0; i < mutations.length; i++) {
+        var mutationRecord = mutations[i];
+        switch(mutationRecord.type) {
+            case "characterData":
+                kango.console.log("Character Data");
+                kango.console.log(mutationRecord.target);
+                break;
+            case "childList":
+                kango.console.log("Child list");
+                kango.console.log(mutationRecord.target);
+                break;
+            default:
+                break;
+        }
+    }
 };
 
 var observer = new MutationObserver(_dom_event_handler);

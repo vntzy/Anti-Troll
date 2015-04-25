@@ -18,13 +18,13 @@ function ContentFilter() {
     this._contentSelectors = [];
     this.addContentSelector = function(selector, priority) {
         _append(this._contentSelectors, {"handler": selector, "priority": priority});
-        this._contentSelectors.sort(_priority_sort_function);
+        this._contentSelectors.sort(_prioritySortFunction);
     }
     
     this._fallbackSelectors = [];
     this.addFallbackSelector = function(selector, priority) {
         _append(this._fallbackSelectors, {"handler": selector, "priority": priority});
-        this._fallbackSelectors.sort(_priority_sort_function);
+        this._fallbackSelectors.sort(_prioritySortFunction);
     }
     
     this.findAllContentOnDOMElements = function(domElements, domDocument) {
