@@ -1,5 +1,8 @@
 function Blocker() {
-    this.block(dom) {
+    this.block(domElement) {
         
+    }
+    
+    this.unblock(domElement) {
     }
 }

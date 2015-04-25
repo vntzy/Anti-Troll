@@ -3,7 +3,10 @@
     "description": "Extension description",
     "creator": "null",
     "background_scripts": [
-        "main.js"
+        "main.js",
+        "core/contentFilter.js",
+        "core/classifier.js",
+        "core/content_selectors/facebook_selector.js",
     ], 
     "homepage_url": "https://github.com/vntzy/Anti-Troll",
     "version": "0.0.1",
