@@ -1,0 +1,17 @@
+%p="There are #{comments.size} comments"
+- comments.each do |comment|
+  %p="Author: #{comment[:author]}"
+  %p="Upvotes: #{comment[:upvotes]} Downvotes: #{comment[:downvotes]}"
+  %p=comment[:body]
+  %form{action: 'classify', method: 'POST'}
+    %span
+      %input{type:'hidden', name:'comment[comment_id]', value: comment[:id]}
+      %label{for: 'super-troll'}
+      %input{type: 'radio', id: 'super-troll', name: 'comment[rating]', value: '2'} Super Troll
+      %label{for: 'troll'}
+      %input{type: 'radio', id: 'troll', name: 'comment[rating]', value: '1'} Troll
+      %label{for: 'no'}
+      %input{type: 'radio', checked: 'checked', id: 'no', name: 'comment[rating]', value: '0'} No
+    %br
+    %br
+    %input{type: 'submit', value: 'Submit'}

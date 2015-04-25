@@ -25,3 +25,9 @@ DB.create_table :comments do
   Integer  :downvotes
   foreign_key :news_id, :news
 end
+
+DB.create_table :comment_classifications do
+  primary_key :id
+  Integer :rating
+  foreign_key :comment_id, :comments
+end
