@@ -2,7 +2,7 @@ function ExampleFallbackSelector() {
     this.selectContentFromDOMElements = function(domElements) {
         //TODO: Find (e.g.) all profanities
         return [];
-    }
+    };
 }
 
 var exampleFallbackSelector = new ExampleFallbackSelector();

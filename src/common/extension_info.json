@@ -3,7 +3,6 @@
         "core/content_scripts/dom_event_handler.js",
         "core/util.js",
         "core/contentFilter.js",
-        "core/classifier.js",
         "core/content_selectors/facebook_selector.js",
         "core/content_selectors/fallback_selectors.js",
         "core/parse/blocker.js"
@@ -12,7 +11,8 @@
     "creator": "null",
 	"name": "Anti-Troll-Extension",
     "background_scripts": [
-        "main.js"
+        "main.js",
+        "core/classifier.js"
     ], 
     "homepage_url": "https://github.com/vntzy/Anti-Troll",
     "version": "0.0.1",

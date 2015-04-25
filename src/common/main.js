@@ -11,7 +11,7 @@
 Extension.prototype = {
 	
 	_defaultOptions: {
-		"aggressiveness" = 50,
+		"aggressiveness": 50
 	},
 	
 	_loadOptions: function() {

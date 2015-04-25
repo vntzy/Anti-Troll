@@ -1,9 +1,9 @@
 function Blocker(markAsAcceptableCallback, markAsOffensiveCallback) {
-    this.block(domElement) {
+    this.block = function(domElement) {
         
-    }
+    };
     
-    this.unblock(domElement) {
+    this.unblock = function(domElement) {
         
-    }
+    };
 }
