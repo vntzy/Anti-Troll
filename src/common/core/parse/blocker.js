@@ -1,5 +1,5 @@
 function Blocker() {
-  this.block(dom) {
-    
-  }
+    this.block(dom) {
+        
+    }
 }
