@@ -1,4 +1,5 @@
 require_relative './db.rb'
+require 'json'
 
 module Classifier
   def print
@@ -10,7 +11,7 @@ module Classifier
   end
 
   def tokenize(string)
-    string.downcase.gsub(/[^a-zа-я\s]/i, '').gsub(/\s+/,' ').split(' ')
+    string.downcase.gsub(/[^a-zа-я\s]/i, '').gsub(/\s+/,' ').split(' ').reject{|word| word.size < 3}
   end
 
   def word_count(string)
@@ -55,4 +56,14 @@ module Classifier
 
     [normal_wc, troll_wc]
   end
+
+  def json_dump
+    normal_word_count, troll_word_count = calculate_word_count
+    {
+      normal_wc: normal_word_count,
+      troll_wc:  troll_word_count
+    }.to_json
+  end
+
+  extend self
 end
