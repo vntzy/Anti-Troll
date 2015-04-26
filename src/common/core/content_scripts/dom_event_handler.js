@@ -10,25 +10,30 @@
 var $ = window.$.noConflict(true); // Required for IE
 
 var _reportFalsePositive = function(domElement) {
-    //TODO: Work
+    kango.invokeAsync("globalClassifier.markFalsePositive",
+        _renderTextFromDomElement(domElement),
+        function(result) {});
 };
 
 var _reportFalseNegative = function(domElement) {
-    //TODO: Work
+    kango.invokeAsync("globalClassifier.markContentAsUnacceptable",
+        _renderTextFromDomElement(domElement),
+        function(result) {});
 };
+
+//TODO: Remove false positive events from ContentMarker
 
 var _domEventHandler = function(mutations) {
     var targetDomElements = [];
     for(var i = 0; i < mutations.length; i++) {
         var mutationRecord = mutations[i];
         switch(mutationRecord.type) {
+            //TODO: Optimize
             case "bodyInit":
                 _append(targetDomElements, mutationRecord.target);
                 break;
             case "characterData":
             case "childList":
-                //kango.console.log("Character Data");
-                //kango.console.log(mutationRecord.target);
                 _append(targetDomElements, mutationRecord.target);
                 break;
             default:
