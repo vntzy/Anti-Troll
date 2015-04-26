@@ -1,8 +1,8 @@
 function Classifier(savedState, aggressiveness,
     blacklist, whitelist) {
     //TODO: Implement comment cache
-    this._blacklist = blacklist;
-    this._whitelist = whitelist;
+    this._blacklist = blacklist || {};
+    this._whitelist = whitelist || {};
     //TODO: Warning: savedState may be null!!!!
     this._savedState = savedState;
     this._aggressiveness = aggressiveness;

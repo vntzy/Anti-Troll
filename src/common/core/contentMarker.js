@@ -13,9 +13,9 @@ function ContentMarker(markAsAcceptableCallback, markAsOffensiveCallback) {
       dom.addClass('t-initial');
       dom.children().wrapAll('<div class="t-comment"></div>');
       var menu = $(document.createElement('div')).attr({
-        class: "t-menu",
+        "class": "t-menu",
       }).css({
-        text-align: center,
+        "text-align": "center",
       });
 
       // show-hide buttons
