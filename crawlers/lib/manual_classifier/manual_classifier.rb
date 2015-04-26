@@ -2,6 +2,9 @@ require 'sinatra'
 require 'haml'
 require_relative '../db'
 
+# run in the local network
+set :bind, '0.0.0.0'
+
 post '/classify' do
   DB[:comment_classifications].insert(params[:comment])
   redirect back
