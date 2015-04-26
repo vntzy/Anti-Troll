@@ -20,22 +20,24 @@ function ContentMarker(markAsAcceptableCallback, markAsOffensiveCallback) {
 
       // show-hide buttons
       var showButton = $(document.createElement('button')).attr({
-        onclick: "$(this).parent().next().show();$(this).hide();hideButton.show()",
+        onclick: "$(this).parent().next().show();$(this).hide();$(this).parent().children('.hide-btn').show()",
       });
       showButton.html('Show');
+      showButton.addClass('show-btn');
       var hideButton = $(document.createElement('button')).attr({
-        onclick: "$(this).parent().next().hide();$(this).hide();showButton.show()",
+        onclick: "$(this).parent().next().hide();$(this).hide();$(this).parent().children('.show-btn').show()",
       });
       hideButton.html('Hide');
+      hideButton.addClass('hide-btn');
 
       // block-unblock buttons
       var blockButton = $(document.createElement('button')).attr({
-        onclick: "markAsOffensiveCallback($(this).parent().parent()[0];hideButton.click()",
+        onclick: "markAsOffensiveCallback($(this).parent().parent()[0]);$(this).parent().children('hide-btn').click()",
       });
       blockButton.html('Block');
       blockButton.addClass('block-btn');
       var unblockButton = $(document.createElement('button')).attr({
-        onclick: "markAsAcceptableCallback($(this).parent().parent()[0];showButton.click()",
+        onclick: "markAsAcceptableCallback($(this).parent().parent()[0]);$(this).parent().children('show-btn').click()",
       });
       unblockButton.html('Unblock');
       unblockButton.addClass('unblock-btn');
