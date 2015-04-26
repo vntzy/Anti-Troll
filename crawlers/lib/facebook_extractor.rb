@@ -11,12 +11,9 @@ class FacebookExtractor
   end
 
   def blocks(page)
-    if page.class == String
-      puts "PAGE SHIT #{page}"
-    end
     JSON.parse(page.body)['data'].select do |block|
       block['type'] == 'status'
-    end.tap { |x| puts "BLOCKS SIZE #{x.map(&:inspect).join("\n")}" }
+    end
   end
 
   def news(block)
