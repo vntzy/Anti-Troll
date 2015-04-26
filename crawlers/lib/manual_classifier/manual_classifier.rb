@@ -13,6 +13,7 @@ get '/:site' do
     join(:sites, id: :news__site_id).
     where(sites__name: params[:site]).
     left_outer_join(:comment_classifications, comment_id: :comments__id).
-    where(comment_classifications__comment_id: nil).all
+    where(comment_classifications__comment_id: nil).
+    select_all(:comments).all
   haml :index, locals: { comments: comments }
 end
