@@ -1,7 +1,7 @@
 {
     "content_scripts": [
         "core/content_scripts/dom_event_handler.js",
-        "core/util.js",
+        "core/utils.js",
         "core/contentFilter.js",
         "core/contentMarker.js",
         "core/content_selectors/facebook_selector.js",
@@ -21,7 +21,12 @@
     "browser_button": {
         "caption": "Anti-Troll",
         "icon": "icons/button.png",
-        "tooltipText": "Anti-Troll"
+        "tooltipText": "Anti-Troll",
+		"popup": {
+            "url": "ui/popup.html",
+            "width": 600,
+            "height": 520
+        }
     },
 	"options_page": "ui/options.html"
 }
