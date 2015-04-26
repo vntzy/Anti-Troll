@@ -13,6 +13,8 @@
 	"name": "Anti-Troll-Extension",
     "background_scripts": [
         "main.js",
+        "dependencies/classifierState.json",
+        "dependencies/bayes_web.js",
 		"core/optionStorage.js",
         "core/classifier.js"
     ], 
