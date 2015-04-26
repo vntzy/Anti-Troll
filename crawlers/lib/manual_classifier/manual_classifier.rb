@@ -17,12 +17,13 @@ get '/:site/:page' do
     where(sites__name: params[:site]).
     left_outer_join(:comment_classifications, comment_id: :comments__id).
     where(comment_classifications__comment_id: nil).
-    order(:news__id).select_all(:comments).
-    offset(offset).limit(PAGE_SIZE).all
+    order(:news__id).select_all(:comments).select_append(:news__body___news).
+    offset(offset).limit(PAGE_SIZE)
   total_classified_comments = DB[:comment_classifications].count
   total_comments = DB[:comments].count
   haml :index, locals: {
-    comments: comments,
+    sql: comments.sql,
+    comments: comments.all,
     total_comments: total_comments ,
     total_classified_comments: total_classified_comments
   }
