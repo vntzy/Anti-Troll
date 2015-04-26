@@ -8,7 +8,7 @@ class ShortCrawler < Crawler
   def_delegators :@extractor,
     :initial_urls, :next_page, :blocks, :news, :comments
 
-  PAGES_LIMIT = 2
+  PAGES_LIMIT = 50
 
   def all_blocks
     all_start_pages = initial_urls.map { |url| @agent.get(url) }.flatten
