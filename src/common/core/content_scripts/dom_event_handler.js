@@ -28,13 +28,15 @@ var _domEventHandler = function(mutations) {
     for(var i = 0; i < mutations.length; i++) {
         var mutationRecord = mutations[i];
         switch(mutationRecord.type) {
-            //TODO: Optimize
+            //TODO: Optimize/
             case "bodyInit":
+            case "characterData":
                 _append(targetDomElements, mutationRecord.target);
                 break;
-            case "characterData":
             case "childList":
-                _append(targetDomElements, mutationRecord.target);
+                //_append(targetDomElements, mutationRecord.target);
+                targetDomElements = targetDomElements.concat(
+                    Array.prototype.slice.call(mutationRecord.addedNodes));
                 break;
             default:
                 break;
@@ -49,8 +51,8 @@ var _domEventHandler = function(mutations) {
             plaintextValue, 
                 function(currentDomElement, currentPlaintextValue) {
                     return function(isNotToxic) {
-                        kango.console.log(
-                            currentPlaintextValue + "|" + isNotToxic);
+                        /*kango.console.log(
+                            currentPlaintextValue + "|" + isNotToxic);*/
                         contentMarker.mark(currentDomElement, !isNotToxic);
                     }
             }(_shallowestCopy(domElement), _shallowestCopy(plaintextValue)));
