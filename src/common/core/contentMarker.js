@@ -7,15 +7,71 @@ function ContentMarker(markAsAcceptableCallback, markAsOffensiveCallback) {
 
   this.mark = function(domElement, isBlocked) {
     var dom = $(domElement);
-    var children = dom.children();
-    children.wrapAll('<div class="t-blocked"></div>');
-    var hiddenDom = children().first();
-    hiddenDom.hide();
-    dom.prepend('<div style="text-align: center;>
-                  <img style="float: left; width: 20px; height: 20px;" src="http://vignette3.wikia.nocookie.net/yogbox/images/c/c6/Ban.png/revision/latest?cb=20120816112127">
-                  Blocked Content
-                  <button style="float: right;">Unblock</button>
-                  <button style="float: right;">Show</button>
-                </div>');
+    var isInitial = !dom.hasClass('t-initial');
+
+    if (isInitial) {
+      dom.addClass('t-initial');
+      dom.children().wrapAll('<div class="t-comment"></div>');
+      var menu = $(document.createElement('div')).attr({
+        class: "t-menu",
+      }).css({
+        text-align: center,
+      });
+
+      // show-hide buttons
+      var showButton = $(document.createElement('button')).attr({
+        onclick: "$(this).parent().next().show();$(this).hide();hideButton.show()",
+      });
+      showButton.html('Show');
+      var hideButton = $(document.createElement('button')).attr({
+        onclick: "$(this).parent().next().hide();$(this).hide();showButton.show()",
+      });
+      hideButton.html('Hide');
+
+      // block-unblock buttons
+      var blockButton = $(document.createElement('button')).attr({
+        onclick: "markAsOffensiveCallback($(this).parent().parent()[0];hideButton.click()",
+      });
+      blockButton.html('Block');
+      blockButton.addClass('block-btn');
+      var unblockButton = $(document.createElement('button')).attr({
+        onclick: "markAsAcceptableCallback($(this).parent().parent()[0];showButton.click()",
+      });
+      unblockButton.html('Unblock');
+      unblockButton.addClass('unblock-btn');
+
+      menu.append(showButton);
+      menu.append(hideButton);
+      menu.append(blockButton);
+      menu.append(unblockButton);
+      dom.prepend(menu);
+      if (isBlocked) {
+        blockButton.hide();
+        hideButton.hide();
+        dom.addClass('t-blocked');
+      } else {
+        showButton.hide();
+        unblockButton.hide();
+        dom.addClass('t-unblocked');
+      }
+    } else {
+      if (isBlocked) {
+        if (dom.hasClass("t-blocked")) {
+          return;
+        } else {
+          dom.removeClass("t-unblocked");
+          dom.addClass("t-blocked");
+          dom.children(".block-btn").click();
+        }
+      } else {
+        if (dom.hasClass("t-blocked")) {
+          dom.removeClass("t-blocked");
+          dom.addClass("t-unblocked");
+          dom.children(".unblock-btn").click();
+        } else {
+          return;
+        }
+      }
+    }
   }
 }
