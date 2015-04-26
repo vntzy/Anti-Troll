@@ -15,20 +15,21 @@ end
 
 def classify(comment, troll_wc, normal_wc)
   words = tokenize(comment[:body])
-  p_troll = 1
-  p_normal = 1
-  words.each do |word|
+  p_troll = 0
+  p_normal = 0
+  words.select{|word| word.size > 5}.each do |word|
     total_mentions = troll_wc[word] + normal_wc[word]
-    p_troll *= (troll_wc[word] + 1) / (troll_wc[word]+normal_wc[word]+2)
-    p_normal *= (normal_wc[word] + 1) / (troll_wc[word]+normal_wc[word]+2)
+    p_troll += Math.log((troll_wc[word] + 1) / (total_mentions+2.0))
+    p_normal += Math.log((normal_wc[word] + 1) / (total_mentions+2.0))
   end
+  "#{p_troll} #{p_normal}"
   (p_troll > p_normal) ? 'Troll' : 'Normal'
 end
 
-priors = {
-  'troll' => 0.2,
-  'normal' => 0.8
-}
+# priors = {
+#   'troll' => 0.2,
+#   'normal' => 0.8
+# }
 
 normal_wc = Hash.new(0)
 troll_wc = Hash.new(0)
@@ -49,7 +50,6 @@ end
 DB[:comments].join(:comment_classifications, :comment_id => :id).all[1500..-1].each do |comment|
   if classify(comment, troll_wc, normal_wc) != 'Normal'
     p "#{classify(comment, troll_wc, normal_wc)} , #{state(comment)}"
-    p comment[:body]
   end
 end
 
@@ -66,7 +66,7 @@ max_word = ''
 #   end
 # end
 
-p all_words.sort_by { |word| troll_wc[word] + normal_wc[word] }.first(100)
-p troll_wc['например']
-p normal_wc['например']
+# p all_words.sort_by { |word| troll_wc[word] + normal_wc[word] }.first(100)
+# p troll_wc['например']
+# p normal_wc['например']
 
