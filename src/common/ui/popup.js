@@ -30,10 +30,20 @@ var MenuHelper = {
 	
 	pauseSet: function() {
         optionStorage.update("is_paused", true);
+        kango.browser.tabs.getAll(function(tabs) {
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].dispatchMessage("paused", true);
+            }
+        });
     },
 	
 	pauseRemove: function() {
         optionStorage.update("is_paused", false);
+        kango.browser.tabs.getAll(function(tabs) {
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].dispatchMessage("paused", false);
+            }
+        });
     },
 	
 	pauseGet: function() {

@@ -28,6 +28,7 @@ function Classifier(savedState, aggressiveness,
         }
         //kango.console.log(contentText);
         var classifierAnswer = this._realClassifier.categorize(contentText);
+        // Aggressiveness is between 1 and 100
         // TODO: Convert 0/1/2 into yes/no
 		return true;
 	};
