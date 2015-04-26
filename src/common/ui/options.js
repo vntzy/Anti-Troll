@@ -1,24 +1,4 @@
-﻿var OptionsStorage = {
-	
-	_storageKeyPrefix: "option_",
-	
-	_applyPrefix: function(key) {
-		return this._storageKeyPrefix.concat(key);
-	},
-	
-	init: function() {
-		// TODO
-	},
-	
-	updateSetting: function(key, value) {
-		kango.invokeAsync('kango.storage.setItem', this._applyPrefix(key), value);
-	},
-	
-	getSetting: function(key) {
-		return kango.storage.getItem(this._applyPrefix(key));
-	}
-};
-
+﻿
 var AggressivenessSlider = {
 	_value: 50, // Default value
 	_minValue: 1,
@@ -36,7 +16,7 @@ var AggressivenessSlider = {
 	
 	init: function() {
 		// Get value from user saved data
-		this._value = OptionsStorage.getSetting("aggressiveness");
+		this._value = optionStorage.get("aggressiveness");
 		
 		$("#slider").slider({
 			range: "min",
@@ -46,7 +26,7 @@ var AggressivenessSlider = {
 			slide: function(event, ui) {
 				AggressivenessSlider._value = ui.value;
 				AggressivenessSlider._updateLabel();
-				OptionsStorage.updateSetting("aggressiveness", AggressivenessSlider._value);
+				optionStorage.update("aggressiveness", AggressivenessSlider._value);
 			}
 		});
 		
@@ -58,8 +38,6 @@ KangoAPI.onReady(function() {
     $('#close').click(function(event) {
         KangoAPI.closeWindow()
     });
-
-    OptionsStorage.init();
 	
 	// Initializing slider for user aggressiveness threshold
 	AggressivenessSlider.init();

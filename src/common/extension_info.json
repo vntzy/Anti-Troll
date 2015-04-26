@@ -6,13 +6,14 @@
         "core/contentMarker.js",
         "core/content_selectors/facebook_selector.js",
         "core/content_selectors/fallback_selectors.js",
-        "core/content_selectors/test_selector.js",
+        "core/content_selectors/test_selector.js"
     ],
     "description": "Extension description",
     "creator": "null",
 	"name": "Anti-Troll-Extension",
     "background_scripts": [
         "main.js",
+		"core/optionStorage.js",
         "core/classifier.js"
     ], 
     "homepage_url": "https://github.com/vntzy/Anti-Troll",
