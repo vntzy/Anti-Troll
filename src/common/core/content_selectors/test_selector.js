@@ -7,7 +7,7 @@ function VestiContentSelector() {
     };
 
     this.selectContentFromDOMElements = function(domElements) {
-        var result = _getElementsByXpath("//div[@class='comments-item']/div[@class='text']/p");
+        var result = _getElementsByXpath("//div[@class='comments-item']");
         return result;
     };
 }

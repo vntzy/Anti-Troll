@@ -17,12 +17,36 @@ function ContentMarker(markAsAcceptableCallback, markAsOffensiveCallback) {
       }).css({
         "text-align": "center",
       });
+      menu.css({
+        'display': 'inline-block',
+        'position': 'absolute',
+        'margin-left': '60%',
+        'z-index': '9999',
+      });
+
+      var menu_wrapper = $(document.createElement('div')).css({
+        'width': '30px',
+        'height': '30px',
+        'position': 'absolute',
+        'margin-left': '60%',
+        'z-index': '9999',
+      });
+      menu_wrapper.hover(function() { menu.show(); }, function() { menu.hide(); });
+
+      var info_box = $(document.createElement('div'));
+      info_box.html("Content blocked by Anti-Troll.");
+      info_box.attr('class', 't-info');
+      info_box.css({
+        'position': 'absolute',
+        'margin-left': '20%',
+      });
 
       // show-hide buttons
-      var showButton = $(document.createElement('button')).attr({
+      var showButton = $(document.createElement('img')).attr({
+        title: 'Show',
+        src: '../icons/show.png',
         onclick: "$(this).parent().next().show();$(this).hide();$(this).parent().children('.hide-btn').show()",
       });
-      showButton.html('Show');
       showButton.addClass('show-btn');
       var hideButton = $(document.createElement('button')).attr({
         onclick: "$(this).parent().next().hide();$(this).hide();$(this).parent().children('.show-btn').show()",
@@ -31,13 +55,27 @@ function ContentMarker(markAsAcceptableCallback, markAsOffensiveCallback) {
       hideButton.addClass('hide-btn');
 
       // block-unblock buttons
-      var blockButton = $(document.createElement('button')).attr({
-        onclick: "markAsOffensiveCallback($(this).parent().parent()[0]);$(this).parent().children('hide-btn').click()",
+      var blockButton = $(document.createElement('button'));
+      blockButton.on('click', function () {
+        markAsOffensiveCallback(blockButton.parent().parent()[0]);
+        blockButton.parent().children('.hide-btn').click();
+        blockButton.hide();
+        unblockButton.show();
+        dom.removeClass('t-unblocked');
+        dom.addClass('t-blocked');
+        dom.prepend(info_box);
       });
       blockButton.html('Block');
       blockButton.addClass('block-btn');
-      var unblockButton = $(document.createElement('button')).attr({
-        onclick: "markAsAcceptableCallback($(this).parent().parent()[0]);$(this).parent().children('show-btn').click()",
+      var unblockButton = $(document.createElement('button'));
+      unblockButton.click(function () {
+        markAsAcceptableCallback(unblockButton.parent().parent()[0]);
+        unblockButton.parent().children('.show-btn').click();
+        unblockButton.hide();
+        blockButton.show();
+        dom.removeClass('t-blocked');
+        dom.addClass('t-unblocked');
+        dom.children('.t-info').remove();
       });
       unblockButton.html('Unblock');
       unblockButton.addClass('unblock-btn');
@@ -46,7 +84,8 @@ function ContentMarker(markAsAcceptableCallback, markAsOffensiveCallback) {
       menu.append(hideButton);
       menu.append(blockButton);
       menu.append(unblockButton);
-      dom.prepend(menu);
+      menu_wrapper.append(menu);
+      dom.prepend(menu_wrapper);
       if (isBlocked) {
         blockButton.hide();
         hideButton.hide();
