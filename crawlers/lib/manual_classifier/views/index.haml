@@ -2,7 +2,7 @@
 %p="There are #{total_comments}  comments"
 - comments.each do |comment|
   %p="Author: #{comment[:author]}"
-  %p="News: #{comment[:news]}"
+  -# %p="News: #{comment[:news__body]}"
   %p="Upvotes: #{comment[:upvotes]} Downvotes: #{comment[:downvotes]}"
   %p=comment[:body]
   %form{action: '/classify', method: 'POST'}
