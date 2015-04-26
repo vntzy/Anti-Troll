@@ -7,7 +7,7 @@ OptionStorage = function() {
 	};
 	
 	this.update = function(key, value) {
-		kango.invokeAsync('kango.storage.setItem', this._applyPrefix(key), value);
+		kango.invokeAsync('kango.storage.setItem', this._applyPrefix(key), value, function() {kango.console.log("Saved key/value");});
 	};
 	
 	this.get = function(key) {

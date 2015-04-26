@@ -6,6 +6,10 @@
 function ContentMarker(markAsAcceptableCallback, markAsOffensiveCallback) {
 
   this.mark = function(domElement, isBlocked) {
+    if(isBlocked) {
+        kango.console.log("Element is blocked: ");
+        kango.console.log(domElement);
+    }
     var dom = $(domElement);
     var isInitial = !dom.hasClass('t-initial');
 
@@ -85,7 +89,8 @@ function ContentMarker(markAsAcceptableCallback, markAsOffensiveCallback) {
         cursor: 'pointer',
       });
       blockButton.on('click', function () {
-        markAsOffensiveCallback(blockButton.parent().parent()[0]);
+        //markAsOffensiveCallback(blockButton.parent().parent()[0]);
+        markAsOffensiveCallback(domElement);
         blockButton.parent().children('.hide-btn').click();
         blockButton.hide();
         unblockButton.show();
@@ -101,7 +106,8 @@ function ContentMarker(markAsAcceptableCallback, markAsOffensiveCallback) {
         cursor: 'pointer',
       });
       unblockButton.click(function () {
-        markAsAcceptableCallback(unblockButton.parent().parent()[0]);
+        //markAsAcceptableCallback(unblockButton.parent().parent()[0]);
+        markAsAcceptableCallback(domElement);
         unblockButton.parent().children('.show-btn').click();
         unblockButton.hide();
         blockButton.show();
