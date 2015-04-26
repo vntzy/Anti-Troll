@@ -1,3 +1,4 @@
+// @require core/utils.js
 
 function FacebookContentSelector() {
 	
@@ -7,19 +8,8 @@ function FacebookContentSelector() {
 	
     this.selectContentFromDOMElements = function(domElements) {
 		
-		for (var i = 0; i < domElements.length; i++) {
-			result = document.evaluate("//span[@class='UFICommentBody']/span", domElements[i], null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
-			if (result){
-				var node = result.iterateNext();
-				while(node) {
-					console.log(_renderTextFromDomElement(node));
-					node = result.iterateNext();
-				}
-			} else {
-				console.log("No elements found.")
-			}
-		}
-        return [];
+		var result = _getElementsByXpath("//li[contains(@class, 'UFIComment')]");
+        return result;
     };
 }
 
