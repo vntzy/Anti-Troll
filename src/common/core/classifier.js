@@ -10,16 +10,22 @@ function Classifier(savedState, aggressiveness,
 	this.isContentAcceptable = function(contentText) {
         // Much machine; such learning!
         if(contentText in this._whitelist) {
+            kango.console.log(contentText);
+            kango.console.log("Is in whitelist");
             return true;
         } else if(contentText in this._blacklist) {
+            kango.console.log(contentText);
+            kango.console.log("Is in blacklist");
             return false;
         }
-        kango.console.log(contentText);
+        //kango.console.log(contentText);
 		return true;
 	};
     
     this.markContentAsUnacceptable = function(contentText) {
         //TODO: Update Machine model
+        kango.console.log("Blacklisting: ");
+        kango.console.log(contentText);
         if(contentText in this._whitelist) {
             delete this._whitelist[contentText];
         }
@@ -39,7 +45,7 @@ function Classifier(savedState, aggressiveness,
     };
     
     this._saveLists = function() {
-        var counter = 0;
+        var counter = -1;
         counter++;
         if(counter % 5 == 0) {
             optionStorage.update("whitelist", this._whitelist);
