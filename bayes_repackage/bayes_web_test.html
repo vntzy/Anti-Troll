@@ -1,0 +1,39 @@
+<html>
+<head>
+<script src="bayes_web.js"></script>
+<script>
+var bayes = require('bayes');
+
+var classifier = bayes();
+
+// teach it positive phrases
+
+classifier.learn('amazing, awesome movie!! Yeah!! Oh boy.', 'positive');
+classifier.learn('Sweet, this is incredibly, amazing, perfect, great!!', 'positive');
+
+// teach it a negative phrase
+
+classifier.learn('terrible, shitty thing. Damn. Sucks!!', 'negative');
+
+// now ask it to categorize a document it has never seen before
+
+var stringToCategorize = 'awesome, cool, amazing!! Yay.';
+var classifierResult = classifier.categorize(stringToCategorize);
+console.log("Classified this: " + stringToCategorize);
+console.log("Classified as: " + classifierResult);
+// => 'positive'
+
+// serialize the classifier's state as a JSON string.
+var stateJson = classifier.toJson();
+
+// load the classifier back from its JSON representation.
+var revivedClassifier = bayes.fromJson(stateJson);
+
+console.log("If you see this, probably everything was okay");
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'haml'
+require 'json'
 require_relative '../db'
 
 # run in the local network
@@ -30,4 +31,10 @@ get '/:site/:page' do
     total_comments: total_comments ,
     total_classified_comments: total_classified_comments
   }
+end
+
+get '/training_set' do
+  content_type 'application/json'
+  DB[:comments].join(:comment_classifications, comment_id: :comments__id).
+    select(:comments__body, :comment_classifications__rating).to_a.to_json.to_s
 end
