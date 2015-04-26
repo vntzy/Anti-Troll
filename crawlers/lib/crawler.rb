@@ -16,7 +16,7 @@ class Crawler
     i = 0
     page = @agent.get(initial_url)
     pages = [initial_url]
-    while !next_page(page).nil? && (i < 100) do
+    while !next_page(page).nil? && (i < 20) do
       page = @agent.get(next_page(page))
       pages.push page.uri.to_s
       i += 1

@@ -1,3 +1,5 @@
+require 'iconv'
+
 class OffnewsExtractor
   def initial_urls
     [
@@ -37,19 +39,24 @@ class OffnewsExtractor
   end
 
   private
+  def clean(str)
+    @iconv ||= Iconv.new('UTF-8//IGNORE', 'UTF-8')
+    @iconv.iconv(str)
+  end
+
   def author(comment)
-    comment.search('span.comment_name').text
+    clean(comment.search('span.comment_name').text)
   end
 
   def body(comment)
-    comment.search('.comment_text').text.gsub(/\s+/,' ').sub(/\+ \d+ - \d+/i,'')
+    clean(comment.search('.comment_text').text).gsub(/\s+/,' ')  .sub(/\+ \d+ - \d+/i,'')
   end
 
   def upvotes(comment)
-    comment.search('.vote_up').text.gsub(/\s+/,'').to_i
+    clean(comment.search('.vote_up').text).gsub(/\s+/,'').to_i
   end
 
   def downvotes(comment)
-    comment.search('.vote_down').text.gsub(/\s+/,'').to_i
+    clean(comment.search('.vote_down').text).gsub(/\s+/,'').to_i
   end
 end
